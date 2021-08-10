@@ -8,6 +8,8 @@ import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UsuariosPage from "views/Usuarios/Usuarios";
+import FacultadesPage from "views/Faculltades/Facultades";
+import {House} from "@material-ui/icons";
 
 const dashboardRoutes = [
   {
@@ -50,6 +52,13 @@ const dashboardRoutes = [
     name: "Usuarios",
     icon: Person,
     component: UsuariosPage,
+    layout: "/admin",
+  },
+  {
+    path: "/facultades",
+    name: "Facultades",
+    icon: House,
+    component: FacultadesPage,
     layout: "/admin",
   },
 ];

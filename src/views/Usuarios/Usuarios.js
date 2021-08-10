@@ -14,7 +14,7 @@ class Usuarios extends Component {
       "Content-Type": "application/json",
       "x-token": cookies.get("token"),
     };
-    axios.get(`${process.env.REACT_APP_BACKURL}/api/usuario`,{headers:headers})
+    axios.get(`${process.env.REACT_APP_BACKURL}/usuario`,{headers:headers})
         .then((response) => {
           return response.data;
         })

@@ -25,7 +25,7 @@ class Login extends Component {
   };
 
   iniciarSesion = async () => {
-    console.log(`${process.env.REACT_APP_BACKURL}/api/login`);
+    console.log(`${process.env.REACT_APP_BACKURL}/login`);
 
     const json = JSON.stringify({
       email: this.state.form.username,
@@ -35,7 +35,7 @@ class Login extends Component {
       "Content-Type": "application/json",
     };
     await axios
-      .post(`${process.env.REACT_APP_BACKURL}/api/login`, json, {
+      .post(`${process.env.REACT_APP_BACKURL}/login`, json, {
         headers: headers,
       })
       .then((response) => {

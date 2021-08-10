@@ -22,5 +22,7 @@ module.exports = {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/prop-types": "off",
     'prettier/prettier': 0,
+    "react/display-name": "off",
+    "no-control-regex": 0
   }
 };
