@@ -44,9 +44,9 @@ export default function Dashboard() {
               <CardIcon color="warning">
                 <Icon>content_copy</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Archivos compartidos</p>
+              <p className={classes.cardCategory}>Calificacion general</p>
               <h3 className={classes.cardTitle}>
-                1.8 <small>GB</small>
+                4.8 <small>DE 5</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -54,8 +54,8 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Revisar espacio
+                <a href="#ranking" onClick={(e) => e.preventDefault()}>
+                  Bajo 0.1 en la ultima semana
                 </a>
               </div>
             </CardFooter>
