@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import md5 from "md5";
 import Cookies from "universal-cookie";
-import Logo from "../../assets/svg/logo.svg";
+import Logo from "../assets/svg/logo.svg";
 
 const cookies = new Cookies();
 
@@ -15,7 +14,6 @@ class Login extends Component {
       password: "",
     },
   };
-
   handleChange = async (e) => {
     await this.setState({
       form: {
@@ -33,7 +31,7 @@ class Login extends Component {
       password: this.state.form.password,
     });
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     };
     await axios
       .post(`${process.env.REACT_APP_BACKURL}/api/login`, json, {
@@ -44,7 +42,7 @@ class Login extends Component {
       })
       .then((response) => {
         console.log(response.ok);
-        if ( response.ok === true) {
+        if (response.ok === true) {
           var usuario = response.usuario;
           cookies.set("id", usuario._id, { path: "/" });
           cookies.set("nombre", usuario.nombre, {
@@ -56,7 +54,7 @@ class Login extends Component {
           cookies.set("token", response.token, { path: "/" });
           cookies.set("rol", usuario.rol[0].nombre, { path: "/" });
           alert(`Bienvenido ${usuario.rol[0].nombre} ${usuario.nombre}`);
-          window.location.href = "./dashboard";
+          window.location.href = "./admin";
         } else {
           alert("El usuario o la contraseña no son correctos");
         }
@@ -68,7 +66,7 @@ class Login extends Component {
 
   componentDidMount() {
     if (cookies.get("username")) {
-      window.location.href = "./dashboard";
+      window.location.href = "./admin";
     }
   }
 

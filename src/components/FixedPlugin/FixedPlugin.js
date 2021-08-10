@@ -137,6 +137,8 @@ export default function FixedPlugin(props) {
               <img src={imagine4} alt="..." />
             </a>
           </li>
+
+
           <li className="adjustments-line" />
         </ul>
       </div>

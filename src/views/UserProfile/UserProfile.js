@@ -44,8 +44,8 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Editar Perfil</h4>
-              <p className={classes.cardCategoryWhite}>Completar el perfil</p>
+              <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
+              <p className={classes.cardCategoryWhite}>Complete your profile</p>
             </CardHeader>
             <CardBody>
               <GridContainer>
@@ -147,7 +147,7 @@ export default function UserProfile() {
               </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary">Actualizar</Button>
+              <Button color="primary">Update Profile</Button>
             </CardFooter>
           </Card>
         </GridItem>
@@ -159,8 +159,8 @@ export default function UserProfile() {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h6 className={classes.cardCategory}>AYUDANTE DE FIEC</h6>
-              <h4 className={classes.cardTitle}>AXELL CONCHA</h4>
+              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
+              <h4 className={classes.cardTitle}>Alec Thompson</h4>
               <p className={classes.description}>
                 Don{"'"}t be scared of the truth because we need to restart the
                 human foundation in truth And I love you like Kanye loves Kanye

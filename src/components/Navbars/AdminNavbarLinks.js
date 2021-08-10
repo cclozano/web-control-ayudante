@@ -20,7 +20,9 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies();
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
@@ -46,6 +48,14 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
+  };
+  const CerrarSesion = () => {
+    cookies.remove("id", { path: "/" });
+    cookies.remove("email", { path: "/" });
+    cookies.remove("token", { path: "/" });
+    cookies.remove("nombre", { path: "/" });
+    cookies.remove("rol", { path: "/" });
+    window.location.href = "./";
   };
   return (
     <div>
@@ -197,20 +207,20 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Profile
+                      Perfil
                     </MenuItem>
                     <MenuItem
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Settings
+                      Configuracion
                     </MenuItem>
                     <Divider light />
                     <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={CerrarSesion}
                       className={classes.dropdownItem}
                     >
-                      Logout
+                      Cerrar Sesion
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

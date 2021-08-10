@@ -17,6 +17,8 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 let ps;
 
@@ -42,6 +44,9 @@ const useStyles = makeStyles(styles);
 
 export default function Admin({ ...rest }) {
   // styles
+  if (!cookies.get("email")) {
+    window.location.href = "/login";
+  }
   const classes = useStyles();
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
