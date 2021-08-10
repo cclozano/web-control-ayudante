@@ -33,35 +33,30 @@ class Login extends Component {
       password: this.state.form.password,
     });
     const headers = {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Headers":
-        "Origin, X-Requested-With, Content-Type, Accept",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+      "Content-Type": "application/json"
     };
     await axios
       .post(`${process.env.REACT_APP_BACKURL}/api/login`, json, {
         headers: headers,
       })
       .then((response) => {
-        console.log(response);
         return response.data;
       })
       .then((response) => {
-        if (response.length > 0 && response[0].ok === true) {
-          var respuesta = response[0];
-          var usuario = respuesta.usuario;
-          cookies.set("id", respuesta.id, { path: "/" });
-          cookies.set("apellido_paterno", respuesta.apellido_paterno, {
+        console.log(response.ok);
+        if ( response.ok === true) {
+          var usuario = response.usuario;
+          cookies.set("id", usuario._id, { path: "/" });
+          cookies.set("nombre", usuario.nombre, {
             path: "/",
           });
-          cookies.set("apellido_materno", respuesta.apellido_materno, {
+          cookies.set("email", usuario.email, {
             path: "/",
           });
-          cookies.set("nombre", respuesta.usuario.nombre, { path: "/" });
-          cookies.set("username", respuesta.username, { path: "/" });
-          alert(`Bienvenido ${respuesta.nombre} ${respuesta.apellido_paterno}`);
-          window.location.href = "./menu";
+          cookies.set("token", response.token, { path: "/" });
+          cookies.set("rol", usuario.rol[0].nombre, { path: "/" });
+          alert(`Bienvenido ${usuario.rol[0].nombre} ${usuario.nombre}`);
+          window.location.href = "./dashboard";
         } else {
           alert("El usuario o la contraseña no son correctos");
         }
@@ -73,7 +68,7 @@ class Login extends Component {
 
   componentDidMount() {
     if (cookies.get("username")) {
-      window.location.href = "./menu";
+      window.location.href = "./dashboard";
     }
   }
 
@@ -123,16 +118,6 @@ class Login extends Component {
           </div>
 
           <div style={{ marginTop: "2rem" }}>
-            <p>¿No tienes cuenta?</p>
-            <p
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                color: "midnightblue",
-              }}
-            >
-              Crea una ahora!
-            </p>
             <p>Términos y condiciones de uso</p>
           </div>
         </div>
