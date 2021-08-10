@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Logo from "../assets/svg/logo.svg";
+import toastr from "cogo-toast";
 
 const cookies = new Cookies();
 
@@ -53,7 +54,10 @@ class Login extends Component {
           });
           cookies.set("token", response.token, { path: "/" });
           cookies.set("rol", usuario.rol[0].nombre, { path: "/" });
-          alert(`Bienvenido ${usuario.rol[0].nombre} ${usuario.nombre}`);
+          toastr.info(`Bienvenido! ${usuario.rol[0].nombre} ${usuario.nombre}`, {
+            position: "top-right",
+            heading: "Done",
+          });
           window.location.href = "./admin";
         } else {
           alert("El usuario o la contraseña no son correctos");

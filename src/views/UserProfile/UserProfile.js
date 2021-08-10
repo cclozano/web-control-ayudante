@@ -13,7 +13,7 @@ import CardAvatar from "components/Card/CardAvatar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
-import avatar from "assets/img/faces/marc.jpg";
+import avatar from "assets/img/faces/marc.png";
 
 const styles = {
   cardCategoryWhite: {
@@ -159,15 +159,13 @@ export default function UserProfile() {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
+              <h6 className={classes.cardCategory}>AYUDANTE</h6>
+              <h4 className={classes.cardTitle}>Axell Concha</h4>
               <p className={classes.description}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
+                Ayudante de catedra desde el 2017
               </p>
               <Button color="primary" round>
-                Follow
+                Editar
               </Button>
             </CardBody>
           </Card>

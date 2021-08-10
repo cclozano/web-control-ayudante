@@ -7,6 +7,7 @@ import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
+import UsuariosPage from "views/Usuarios/Usuarios";
 
 const dashboardRoutes = [
   {
@@ -32,7 +33,7 @@ const dashboardRoutes = [
   },
   {
     path: "/typography",
-    name: "Typography",
+    name: "Recursos",
     icon: LibraryBooks,
     component: Typography,
     layout: "/admin",
@@ -42,6 +43,13 @@ const dashboardRoutes = [
     name: "Notificationes",
     icon: Notifications,
     component: NotificationsPage,
+    layout: "/admin",
+  },
+  {
+    path: "/usuarios",
+    name: "Usuarios",
+    icon: Person,
+    component: UsuariosPage,
     layout: "/admin",
   },
 ];
