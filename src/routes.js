@@ -9,7 +9,8 @@ import Typography from "views/Typography/Typography.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UsuariosPage from "views/Usuarios/Usuarios";
 import FacultadesPage from "views/Faculltades/Facultades";
-import {House} from "@material-ui/icons";
+import ClasesPage from "views/Clases/Clases";
+import {Hotel, House} from "@material-ui/icons";
 
 const dashboardRoutes = [
   {
@@ -57,8 +58,15 @@ const dashboardRoutes = [
   {
     path: "/facultades",
     name: "Facultades",
-    icon: House,
+    icon: Hotel,
     component: FacultadesPage,
+    layout: "/admin",
+  },
+  {
+    path: "/clases",
+    name: "Clases",
+    icon: House,
+    component: ClasesPage,
     layout: "/admin",
   },
 ];

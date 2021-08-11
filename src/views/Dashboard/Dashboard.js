@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -30,10 +30,40 @@ import {
 } from "variables/charts.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import axios from "axios";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const useStyles = makeStyles(styles);
 
+const api = axios.create({
+  baseURL: `${process.env.REACT_APP_BACKURL}`
+})
+
 export default function Dashboard() {
+
+  const headers = {
+    "Content-Type": "application/json",
+    "x-token": cookies.get("token"),
+  };
+
+  //const [asist, setAsistencias] = useState([]); //table data
+  const [data, setData] = useState([]); //table data
+  useEffect(() => {
+    api.get("/estadistica/" + cookies.get("id"),{headers:headers})
+        .then(res => {
+          console.log(res.data.estadisticas.asistencia[0])
+          console.log(res.data.estadisticas)
+          setData(res.data.estadisticas)
+          console.log(dailySalesChart.data)
+          dailySalesChart.data=res.data.estadisticas.asistencia[0]
+          console.log(dailySalesChart.data)
+        })
+        .catch(()=>{
+          console.log("Error")
+        })
+  }, [])
   const classes = useStyles();
   return (
     <div>
@@ -46,7 +76,7 @@ export default function Dashboard() {
               </CardIcon>
               <p className={classes.cardCategory}>Calificacion general</p>
               <h3 className={classes.cardTitle}>
-                4.8 <small>DE 5</small>
+                {data.puntuacion} <small>DE 5</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -68,7 +98,7 @@ export default function Dashboard() {
                 <Store />
               </CardIcon>
               <p className={classes.cardCategory}>Inscritos en las clases</p>
-              <h3 className={classes.cardTitle}>28</h3>
+              <h3 className={classes.cardTitle}>{data.inscritos}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -85,7 +115,7 @@ export default function Dashboard() {
                 <Icon>info_outline</Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Consultas Respondidas</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <h3 className={classes.cardTitle}>{data.consultas}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -102,7 +132,7 @@ export default function Dashboard() {
                 <Accessibility />
               </CardIcon>
               <p className={classes.cardCategory}>Seguidores</p>
-              <h3 className={classes.cardTitle}>+56</h3>
+              <h3 className={classes.cardTitle}>+{data.seguidores}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>

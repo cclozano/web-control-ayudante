@@ -55,7 +55,7 @@ function validateEmail(email){
     return re.test(String(email).toLowerCase());
 }
 
-function Usuarios() {
+function Clases() {
   var columns = [
     {title: "id", field: "_id", hidden: true},
     {title: "Avatar", render: rowData => <Avatar maxInitials={1} size={40} round={true} name={rowData === undefined ? " " : rowData.nombre} />  },
@@ -223,4 +223,4 @@ function Usuarios() {
   );
 }
 
-export default Usuarios;
+export default Clases;
