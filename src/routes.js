@@ -3,13 +3,12 @@ import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
-import TableList from "views/TableList/TableList.js";
+import Clases from "views/TableList/Clases.js";
 import Typography from "views/Typography/Typography.js";
 import UsuariosPage from "views/Usuarios/Usuarios";
 import FacultadesPage from "views/Faculltades/Facultades";
-import ClasesPage from "views/Clases/Clases";
 import MateriasPage from "views/Materias/Materias";
-import {Hotel, House, ListAlt} from "@material-ui/icons";
+import {Hotel, ListAlt} from "@material-ui/icons";
 
 const dashboardRoutes = [
   {
@@ -24,20 +23,6 @@ const dashboardRoutes = [
     name: "Perfil de Usuario",
     icon: Person,
     component: UserProfile,
-    layout: "/admin",
-  },
-  {
-    path: "/table",
-    name: "Clases",
-    icon: "content_paste",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
-    path: "/typography",
-    name: "Recursos",
-    icon: LibraryBooks,
-    component: Typography,
     layout: "/admin",
   },
   /*{
@@ -69,10 +54,17 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/clases",
+    path: "/table",
     name: "Clases",
-    icon: House,
-    component: ClasesPage,
+    icon: "content_paste",
+    component: Clases,
+    layout: "/admin",
+  },
+  {
+    path: "/typography",
+    name: "Recursos",
+    icon: LibraryBooks,
+    component: Typography,
     layout: "/admin",
   },
 ];

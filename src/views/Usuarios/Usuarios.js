@@ -27,6 +27,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import {  TextField} from "@material-ui/core";
 const cookies = new Cookies();
 
 const tableIcons = {
@@ -98,7 +99,6 @@ function Usuarios() {
     {title: "Nombre", field: "nombre"},
     {title: "E-mail", field: "email"},
       {title: "Rol", field: "rol"},
-      {title: "Password", field: "password"}
   ]
   const [data, setData] = useState([]); //table data
 
@@ -242,6 +242,16 @@ function Usuarios() {
                         columns={columns}
                         data={data}
                         icons={tableIcons}
+                        options={{
+                            title: 'Password', field: 'password',
+                            render: rowData => <p>{rowData.password.split('').map(() => '*')}</p>,
+                            editComponent: props => (
+                                <TextField
+                                    type="password"
+                                    value={props.value}
+                                    onChange={e => props.onChange(e.target.value)}
+                                />)
+                        }}
                         editable={{
                           onRowUpdate: (newData, oldData) =>
                               new Promise((resolve) => {

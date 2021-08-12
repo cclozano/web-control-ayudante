@@ -92,7 +92,7 @@ function validateEmail(email){
 const useStyles = makeStyles(styles);
 
 
-export default function TableList() {
+export default function Clases() {
     var columns = [
         {title: "id", field: "_id", hidden: true},
         {title: "Avatar", render: rowData => <Avatar maxInitials={1} size={40} round={true} name={rowData === undefined ? " " : rowData.nombre} />  },

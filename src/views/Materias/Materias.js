@@ -67,9 +67,9 @@ class Materias extends Component
                             <thead>
                                 <tr>
                                     <th> Id </th>
-                                    <th> Full Name </th>
-                                    <th> Mobile No </th>
-                                    <th> Action </th>
+                                    <th> Nombre </th>
+                                    <th> Codigo </th>
+                                    <th> Facultad </th>
                                 </tr>
                             </thead>
                             <tbody>
