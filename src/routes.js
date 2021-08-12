@@ -1,16 +1,15 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import Notifications from "@material-ui/icons/Notifications";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
-import NotificationsPage from "views/Notifications/Notifications.js";
 import UsuariosPage from "views/Usuarios/Usuarios";
 import FacultadesPage from "views/Faculltades/Facultades";
 import ClasesPage from "views/Clases/Clases";
-import {Hotel, House} from "@material-ui/icons";
+import MateriasPage from "views/Materias/Materias";
+import {Hotel, House, ListAlt} from "@material-ui/icons";
 
 const dashboardRoutes = [
   {
@@ -41,13 +40,13 @@ const dashboardRoutes = [
     component: Typography,
     layout: "/admin",
   },
-  {
+  /*{
     path: "/notifications",
     name: "Notificationes",
     icon: Notifications,
     component: NotificationsPage,
     layout: "/admin",
-  },
+  },*/
   {
     path: "/usuarios",
     name: "Usuarios",
@@ -60,6 +59,13 @@ const dashboardRoutes = [
     name: "Facultades",
     icon: Hotel,
     component: FacultadesPage,
+    layout: "/admin",
+  },
+  {
+    path: "/materias",
+    name: "Materias",
+    icon: ListAlt,
+    component: MateriasPage,
     layout: "/admin",
   },
   {

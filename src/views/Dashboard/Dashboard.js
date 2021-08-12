@@ -48,17 +48,14 @@ export default function Dashboard() {
     "x-token": cookies.get("token"),
   };
 
-  //const [asist, setAsistencias] = useState([]); //table data
   const [data, setData] = useState([]); //table data
   useEffect(() => {
     api.get("/estadistica/" + cookies.get("id"),{headers:headers})
         .then(res => {
-          console.log(res.data.estadisticas.asistencia[0])
+          console.log(cookies.get("id"))
           console.log(res.data.estadisticas)
           setData(res.data.estadisticas)
-          console.log(dailySalesChart.data)
           dailySalesChart.data=res.data.estadisticas.asistencia[0]
-          console.log(dailySalesChart.data)
         })
         .catch(()=>{
           console.log("Error")

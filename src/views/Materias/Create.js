@@ -1,5 +1,5 @@
-import React, {Component} from "react"
-import toastr from "cogo-toast";
+import React, {Component} from 'react'
+import toastr from 'cogo-toast';
 
 class Create extends Component
 {
@@ -8,9 +8,9 @@ class Create extends Component
 		//--- Declare state variable for this component ---//
 		this.state = {
 			errors    : [],
-			username  : "",
-			mobile_no : "",
-			email 	  : ""
+			username  : '',
+			mobile_no : '',
+			email 	  : ''
 		}
 		//--- Declare method for this component ---//
 		this.baseState = this.state
@@ -38,32 +38,25 @@ class Create extends Component
 			this.reset();
 			this.props.updateState(data, 0);
 			document.getElementById("closeAddModal").click();
-			toastr.success("New user added successfully!",
-				{
-					position : "top-right",
-					heading: "Done"
-				});
+			toastr.success('New user added successfully!', {position : 'top-right', heading: 'Done'});
 		}
 	}
 	//--- Validate all input field ---//
     checkValidation(fields) {
     	var error = {};
     	if(fields.username.length === 0) {
-    		error.username = ["This field is required!"];
+    		error.username = ['This field is required!'];
     	}
     	if(fields.mobile_no.length === 0) {
-    		error.mobile_no = ["This field is required!"];
+    		error.mobile_no = ['This field is required!'];
     	}
     	if(fields.email.length === 0) {
-    		error.email = ["This field is required!"];
+    		error.email = ['This field is required!'];
     	}
 		this.setState({
 			errors : error
 		})
-		if (
-			fields.username.length === 0 ||
-			fields.mobile_no.length === 0 ||
-			fields.email.length === 0) {
+		if(fields.username.length === 0 || fields.mobile_no.length === 0 || fields.email.length === 0) {
 			return true;
 		} else {
 			return false;
@@ -101,21 +94,21 @@ class Create extends Component
 			      		<div className="modal-body">
 			          		<div className="form-group">
 			            		<label htmlFor="username" className="col-form-label">User name:</label>
-			            		<input type="text" className={`form-control form-control-sm ${this.hasErrorFor("username") ? "is-invalid" : ""}`}
+			            		<input type="text" className={`form-control form-control-sm ${this.hasErrorFor('username') ? 'is-invalid' : ''}`}
 			            		 id="username" name="username" placeholder="User name" onChange={this.handleInputFieldChange} value={this.state.username}/>
-			            		{this.renderErrorFor("username")}
+			            		{this.renderErrorFor('username')}
 			         	 	</div>
 			          		<div className="form-group">
 			            		<label htmlFor="mobile_no" className="col-form-label">Mobile No:</label>
-			            		<input type="number" className={`form-control form-control-sm ${this.hasErrorFor("mobile_no") ? "is-invalid" : ""}`}
+			            		<input type="number" className={`form-control form-control-sm ${this.hasErrorFor('mobile_no') ? 'is-invalid' : ''}`}
 			            		 id="mobile_no" name="mobile_no" placeholder="Mobile no" onChange={this.handleInputFieldChange} value={this.state.mobile_no}/>
-			            		{this.renderErrorFor("mobile_no")}
+			            		{this.renderErrorFor('mobile_no')}
 			          		</div>
 			          		<div className="form-group">
 			            		<label htmlFor="email" className="col-form-label">Email:</label>
-			            		<input type="email" className={`form-control form-control-sm ${this.hasErrorFor("email") ? "is-invalid" : ""}`}
+			            		<input type="email" className={`form-control form-control-sm ${this.hasErrorFor('email') ? 'is-invalid' : ''}`}
 			            		 id="email" name="email" placeholder="Email" onChange={this.handleInputFieldChange} value={this.state.email}/>
-			            		{this.renderErrorFor("email")}
+			            		{this.renderErrorFor('email')}
 			          		</div>
 			      		</div>
 			      		<div className="modal-footer">

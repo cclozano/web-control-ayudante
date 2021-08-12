@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { forwardRef } from 'react';
 import Avatar from 'react-avatar';
-import Grid from '@material-ui/core/Grid'
-
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -23,32 +21,70 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert';
 import Cookies from "universal-cookie";
-
+import {makeStyles} from "@material-ui/core/styles";
+import GridItem from "components/Grid/GridItem.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardBody from "components/Card/CardBody.js";
 const cookies = new Cookies();
 
 const tableIcons = {
-  Add: forwardRef((prps, ref) => <AddBox {...prps} ref={ref} />),
-  Check: forwardRef((prps, ref) => <Check {...prps} ref={ref} />),
-  Clear: forwardRef((prps, ref) => <Clear {...prps} ref={ref} />),
-  Delete: forwardRef((prps, ref) => <DeleteOutline {...prps} ref={ref} />),
-  DetailPanel: forwardRef((prps, ref) => <ChevronRight {...prps} ref={ref} />),
-  Edit: forwardRef((prps, ref) => <Edit {...prps} ref={ref} />),
-  Export: forwardRef((prps, ref) => <SaveAlt {...prps} ref={ref} />),
-  Filter: forwardRef((prps, ref) => <FilterList {...prps} ref={ref} />),
-  FirstPage: forwardRef((prps, ref) => <FirstPage {...prps} ref={ref} />),
-  LastPage: forwardRef((prps, ref) => <LastPage {...prps} ref={ref} />),
-  NextPage: forwardRef((prps, ref) => <ChevronRight {...prps} ref={ref} />),
-  PreviousPage: forwardRef((prps, ref) => <ChevronLeft {...prps} ref={ref} />),
-  ResetSearch: forwardRef((prps, ref) => <Clear {...prps} ref={ref} />),
-  Search: forwardRef((prps, ref) => <Search {...prps} ref={ref} />),
-  SortArrow: forwardRef((prps, ref) => <ArrowDownward {...prps} ref={ref} />),
-  ThirdStateCheck: forwardRef((prps, ref) => <Remove {...prps} ref={ref} />),
-  ViewColumn: forwardRef((prps, ref) => <ViewColumn {...prps} ref={ref} />)
+    Add: forwardRef((prps, ref) => <AddBox {...prps} ref={ref} />),
+    Check: forwardRef((prps, ref) => <Check {...prps} ref={ref} />),
+    Clear: forwardRef((prps, ref) => <Clear {...prps} ref={ref} />),
+    Delete: forwardRef((prps, ref) => <DeleteOutline {...prps} ref={ref} />),
+    DetailPanel: forwardRef((prps, ref) => <ChevronRight {...prps} ref={ref} />),
+    Edit: forwardRef((prps, ref) => <Edit {...prps} ref={ref} />),
+    Export: forwardRef((prps, ref) => <SaveAlt {...prps} ref={ref} />),
+    Filter: forwardRef((prps, ref) => <FilterList {...prps} ref={ref} />),
+    FirstPage: forwardRef((prps, ref) => <FirstPage {...prps} ref={ref} />),
+    LastPage: forwardRef((prps, ref) => <LastPage {...prps} ref={ref} />),
+    NextPage: forwardRef((prps, ref) => <ChevronRight {...prps} ref={ref} />),
+    PreviousPage: forwardRef((prps, ref) => <ChevronLeft {...prps} ref={ref} />),
+    ResetSearch: forwardRef((prps, ref) => <Clear {...prps} ref={ref} />),
+    Search: forwardRef((prps, ref) => <Search {...prps} ref={ref} />),
+    SortArrow: forwardRef((prps, ref) => <ArrowDownward {...prps} ref={ref} />),
+    ThirdStateCheck: forwardRef((prps, ref) => <Remove {...prps} ref={ref} />),
+    ViewColumn: forwardRef((prps, ref) => <ViewColumn {...prps} ref={ref} />)
+};
+
+const styles = {
+    cardCategoryWhite: {
+        "&,& a,& a:hover,& a:focus": {
+            color: "rgba(255,255,255,.62)",
+            margin: "0",
+            fontSize: "14px",
+            marginTop: "0",
+            marginBottom: "0",
+        },
+        "& a,& a:hover,& a:focus": {
+            color: "#FFFFFF",
+        },
+    },
+    cardTitleWhite: {
+        color: "#FFFFFF",
+        marginTop: "0px",
+        minHeight: "auto",
+        fontWeight: "300",
+        fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+        marginBottom: "3px",
+        textDecoration: "none",
+        "& small": {
+            color: "#777",
+            fontSize: "65%",
+            fontWeight: "400",
+            lineHeight: "1",
+        },
+    },
 };
 
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_BACKURL}`
+    baseURL: `${process.env.REACT_APP_BACKURL}`
 })
+
+
+const useStyles = makeStyles(styles);
 
 function validateEmail(email){
     const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
@@ -173,53 +209,60 @@ function Usuarios() {
           resolve()
         })
         .catch(() => {
-          setErrorMessages(["Delete failed! Server error"])
+          setErrorMessages(["Fallo en la eliminacion! Server error"])
           setIserror(true)
           resolve()
         })
   }
 
 
+    const classes = useStyles();
   return (
-      <div className="App">
+      <GridContainer>
+          <GridItem xs={12} sm={12} md={12}>
+              <div>
+                  {iserror &&
+                  <Alert severity="error">
+                      {errorMessages.map((msg, i) => {
+                          return <div key={i}>{msg}</div>
+                      })}
+                  </Alert>
+                  }
+              </div>
+              <Card>
+                  <CardHeader color="primary">
+                      <h4 className={classes.cardTitleWhite}>Programacion de mis clases</h4>
+                      <p className={classes.cardCategoryWhite}>
+                          Aqui se encuentran las clases planificadas con los temas a revisar
+                      </p>
+                  </CardHeader>
+                  <CardBody>
+                    <MaterialTable
+                        title="Clases"
+                        columns={columns}
+                        data={data}
+                        icons={tableIcons}
+                        editable={{
+                          onRowUpdate: (newData, oldData) =>
+                              new Promise((resolve) => {
+                                handleRowUpdate(newData, oldData, resolve);
 
-        <Grid container spacing={1}>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={6}>
-            <div>
-              {iserror &&
-              <Alert severity="error">
-                {errorMessages.map((msg, i) => {
-                  return <div key={i}>{msg}</div>
-                })}
-              </Alert>
-              }
-            </div>
-            <MaterialTable
-                title="Clases"
-                columns={columns}
-                data={data}
-                icons={tableIcons}
-                editable={{
-                  onRowUpdate: (newData, oldData) =>
-                      new Promise((resolve) => {
-                        handleRowUpdate(newData, oldData, resolve);
+                              }),
+                          onRowAdd: (newData) =>
+                              new Promise((resolve) => {
+                                handleRowAdd(newData, resolve)
+                              }),
+                          onRowDelete: (oldData) =>
+                              new Promise((resolve) => {
+                                handleRowDelete(oldData, resolve)
+                              }),
+                        }}
+                    />
+                  </CardBody>
+              </Card>
+          </GridItem>
+      </GridContainer>
 
-                      }),
-                  onRowAdd: (newData) =>
-                      new Promise((resolve) => {
-                        handleRowAdd(newData, resolve)
-                      }),
-                  onRowDelete: (oldData) =>
-                      new Promise((resolve) => {
-                        handleRowDelete(oldData, resolve)
-                      }),
-                }}
-            />
-          </Grid>
-          <Grid item xs={3}></Grid>
-        </Grid>
-      </div>
   );
 }
 
