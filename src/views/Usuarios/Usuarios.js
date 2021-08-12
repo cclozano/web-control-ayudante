@@ -99,6 +99,11 @@ function Usuarios() {
     {title: "Nombre", field: "nombre"},
     {title: "E-mail", field: "email"},
       {title: "Rol", field: "rol"},
+      {
+          title: 'Tipo',
+          field: 'tipo',
+          lookup: { 34: 'Estudiante', 63: 'Ayudante' },
+      }
   ]
   const [data, setData] = useState([]); //table data
 
@@ -114,7 +119,6 @@ function Usuarios() {
     api.get("/usuario",{headers:headers})
         .then(res => {
           console.log(res.data)
-          console.log(res.data.usuarios)
           setData(res.data.usuarios)
         })
         .catch(()=>{
@@ -162,7 +166,6 @@ function Usuarios() {
   }
 
   const handleRowAdd = (newData, resolve) => {
-    //validation
     let errorList = []
     if(newData.nombre === undefined){
       errorList.push("Por favor ingresa un nombre")
@@ -173,9 +176,12 @@ function Usuarios() {
     if(newData.email === undefined || validateEmail(newData.email) === false){
         errorList.push("Ingresa un email valido")
     }
-
-    if(errorList.length < 1){ //no error
-      api.post("/usuario", newData)
+      const headers = {
+          "Content-Type": "application/json",
+          "x-token": cookies.get("token"),
+      };
+    if(errorList.length < 1){
+      api.post("/usuario/crear",  newData, {headers:headers})
           .then(() => {
             let dataToAdd = [...data];
             dataToAdd.push(newData);
@@ -194,13 +200,15 @@ function Usuarios() {
       setIserror(true)
       resolve()
     }
-
-
   }
 
   const handleRowDelete = (oldData, resolve) => {
 
-    api.delete("/usuario/"+oldData.id)
+      const headers = {
+          "Content-Type": "application/json",
+          "x-token": cookies.get("token"),
+      };
+    api.delete("/usuario/"+oldData.id, {headers:headers})
         .then(() => {
           const dataDelete = [...data];
           const index = oldData.tableData.id;
@@ -231,9 +239,9 @@ function Usuarios() {
               </div>
               <Card>
                   <CardHeader color="primary">
-                      <h4 className={classes.cardTitleWhite}>Programacion de mis clases</h4>
+                      <h4 className={classes.cardTitleWhite}>Gestion de usuarios</h4>
                       <p className={classes.cardCategoryWhite}>
-                          Aqui se encuentran las clases planificadas con los temas a revisar
+                          En esta seccion puede crear editar y eliminar usuarios de la plataforma
                       </p>
                   </CardHeader>
                   <CardBody>
